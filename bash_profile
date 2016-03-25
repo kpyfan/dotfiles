@@ -24,8 +24,8 @@ fi
 shopt -s expand_aliases
 
 # Set my editor and git editor
-export EDITOR="/usr/bin/vim"
-export GIT_EDITOR='/usr/bin/vim'
+export EDITOR="vim"
+export GIT_EDITOR='vim'
 
 # Don't check mail when opening terminal.
 unset MAILCHECK

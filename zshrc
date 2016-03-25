@@ -1,7 +1,8 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/Lee/.oh-my-zsh
+export ZSH=/Users/kfan/.oh-my-zsh
 
 POWERLEVEL9K_MODE='awesome-patched'
+TERM=xterm-256color
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -54,7 +55,7 @@ plugins=(git battery brew bash-completion rvm zsh-syntax-highlighting)
 
 # User configuration
 
-export PATH="/Users/Lee/bin:/Users/Lee/scripts:/Users/Lee/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/Lee/.gem/ruby/2.0.0/bin:/Users/Lee/.rvm/bin"
+export PATH="/Users/kfan/bin:/Users/kfan/scripts:/Users/kfan/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/kfan/.gem/ruby/2.0.0/bin:/Users/kfan/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -83,10 +84,70 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-DEFAULT_USER="Lee"
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('battery' 'dir' 'vcs')
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('rvm' 'status' 'time')
+alias gitclean_preview="git branch --merged | grep -v '\*'"
+alias gitclean="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
+
+# Extraction
+function extract()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xvjf $1     ;;
+      *.tar.gz)    tar xvzf $1     ;;
+      *.bz2)       bunzip2 $1      ;;
+      *.rar)       unrar x $1      ;;
+      *.gz)        gunzip $1       ;;
+      *.tar)       tar xvf $1      ;;
+      *.tbz2)      tar xvjf $1     ;;
+      *.tgz)       tar xvzf $1     ;;
+      *.zip)       unzip $1        ;;
+      *.Z)         uncompress $1   ;;
+      *.7z)        7z x $1         ;;
+      *)
+      echo "'$1' cannot be extracted via >extract<" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+alias ls='ls -G'
+alias ll='ls -laG'
+alias la='ls -aG'
+alias frontdoor='cd ~/git/frontdoor'
+alias fd='cd ~/git/frontdoor'
+alias javaclient='cd ~/git/frontdoorjavaclient'
+alias fdclient='cd ~/git/frontdoorjavaclient'
+alias ..='cd ..'
+alias .='pwd;ls -G'
+alias ~='cd ~'
+alias l='ls -G'
+alias gpull='git pull --rebase'
+alias gcom='git commit -am'
+alias gcam='git commit --amend -am'
+alias gpush='git push'
+alias gs='git status'
+alias ggraph='git log --decorate --graph --all --pretty=format:"%C(yellow)%h %C(green)%ad%Cred%d %C(white)[%cn] %Cblue%s%Creset%b" --date=relative'
+alias glog='git log'
+
+alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
+alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
+
+DEFAULT_USER="kfan"
+
+prompt_zsh_spotify () {
+  state=`osascript -e 'tell application "Spotify" to player state as string'`;
+  if [ $state = "playing" ]; then
+    artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
+    track=`osascript -e 'tell application "Spotify" to name of current track as string'`;
+
+    echo -n "$artist - $track";
+  fi
+}
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('dir' 'vcs')
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('time' 'zsh_spotify')
 POWERLEVEL9K_RVM_BACKGROUND="red"
 POWERLEVEL9K_RVM_FOREGROUND="black"
 POWERLEVEL9K_SHOW_CHANGESET=true
@@ -96,6 +157,6 @@ POWERLEVEL9K_BATTERY_CHARGED="green"
 POWERLEVEL9K_BATTERY_CHARGING="yellow"
 POWERLEVEL9K_BATTERY_LOW_THRESHOLD=15
 POWERLEVEL9K_BATTERY_LOW_COLOR="red"
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_STRATEGY=""
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
