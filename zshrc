@@ -51,7 +51,7 @@ ZSH_CUSTOM=$ZSH/customizations
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git battery brew bash-completion rvm zsh-syntax-highlighting)
+plugins=(git battery brew zsh-syntax-highlighting)
 
 # User configuration
 
@@ -112,6 +112,10 @@ function extract()
   fi
 }
 
+# The Fuck
+eval "$(thefuck --alias fuck)"
+
+alias cleardb='echo '"'"'drop schema if exists frontdoor; create schema frontdoor;'"'"' | mysqldb'
 alias ls='ls -G'
 alias ll='ls -laG'
 alias la='ls -aG'
@@ -119,6 +123,8 @@ alias frontdoor='cd ~/git/frontdoor'
 alias fd='cd ~/git/frontdoor'
 alias javaclient='cd ~/git/frontdoorjavaclient'
 alias fdclient='cd ~/git/frontdoorjavaclient'
+alias fdtools='cd ~/git/frontdoor-tools'
+alias fdt='cd ~/git/frontdoor-tools'
 alias ..='cd ..'
 alias .='pwd;ls -G'
 alias ~='cd ~'
@@ -128,9 +134,10 @@ alias gcom='git commit -am'
 alias gcam='git commit --amend -am'
 alias gpush='git push'
 alias gs='git status'
-alias ggraph='git log --decorate --graph --all --pretty=format:"%C(yellow)%h %C(green)%ad%Cred%d %C(white)[%cn] %Cblue%s%Creset%b" --date=relative'
+alias ggraph='git log --decorate --graph --all --pretty=format:"%C(yellow)%h %C(green)%ad %C(dim white)[%cn] %Creset%Cblue%s%Creset%b%Cred%d" --date=short'
 alias glog='git log'
 
+alias mysqldb='/Applications/MySQLWorkbench.app/Contents/MacOS/mysql -h localhost -u root'
 alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
 alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
 
