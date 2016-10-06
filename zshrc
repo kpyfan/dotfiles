@@ -136,6 +136,7 @@ alias gpush='git push'
 alias gs='git status'
 alias ggraph='git log --decorate --graph --all --pretty=format:"%C(yellow)%h %C(green)%ad %C(dim white)[%cn] %Creset%Cblue%s%Creset%b%Cred%d" --date=short'
 alias glog='git log'
+alias gfp='git fetch && git pull --rebase'
 
 alias mysqldb='/Applications/MySQLWorkbench.app/Contents/MacOS/mysql -h localhost -u root'
 alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
