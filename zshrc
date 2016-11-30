@@ -85,9 +85,6 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias gitclean_preview="git branch --merged | grep -v '\*'"
-alias gitclean="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
-
 # Extraction
 function extract()
 {
@@ -125,6 +122,7 @@ alias javaclient='cd ~/git/frontdoorjavaclient'
 alias fdclient='cd ~/git/frontdoorjavaclient'
 alias fdtools='cd ~/git/frontdoor-tools'
 alias fdt='cd ~/git/frontdoor-tools'
+alias chime='cd ~/git/chime'
 alias ..='cd ..'
 alias .='pwd;ls -G'
 alias ~='cd ~'
@@ -136,7 +134,7 @@ alias gpush='git push'
 alias gs='git status'
 alias ggraph='git log --decorate --graph --all --pretty=format:"%C(yellow)%h %C(green)%ad %C(dim white)[%cn] %Creset%Cblue%s%Creset%b%Cred%d" --date=short'
 alias glog='git log'
-alias gfp='git fetch && git pull --rebase'
+alias gfp='git fetch -p && git pull --rebase'
 
 alias mysqldb='/Applications/MySQLWorkbench.app/Contents/MacOS/mysql -h localhost -u root'
 alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
