@@ -112,7 +112,7 @@ function extract()
 # The Fuck
 eval "$(thefuck --alias fuck)"
 
-alias cleardb='echo '"'"'drop schema if exists frontdoor; create schema frontdoor;'"'"' | mysqldb'
+alias cleardb='echo '"'"'drop schema if exists frontdoor; create schema frontdoor; drop schema if exists frontdoor_audit; create schema frontdoor_audit;'"'"' | mysqldb'
 alias ls='ls -G'
 alias ll='ls -laG'
 alias la='ls -aG'
@@ -132,7 +132,7 @@ alias gcom='git commit -am'
 alias gcam='git commit --amend -am'
 alias gpush='git push'
 alias gs='git status'
-alias ggraph='git log --decorate --graph --all --pretty=format:"%C(yellow)%h %C(green)%ad %C(dim white)[%cn] %Creset%Cblue%s%Creset%b%Cred%d" --date=short'
+alias ggraph='git log --decorate --graph --all --pretty=format:"%C(yellow)%h %C(green)%ad %C(dim white)[%cn] %Creset%Cblue%s%Creset%Cred%d" --date=short'
 alias glog='git log'
 alias gfp='git fetch -p && git pull --rebase'
 alias grefs=$'git for-each-ref --format=\'%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p)    %(align:25,left)%(color:yellow)%(authorname)%(end) %(color:reset)%(refname:strip=3)\' --sort=author refs/remotes'
@@ -169,3 +169,7 @@ POWERLEVEL9K_BATTERY_LOW_COLOR="red"
 POWERLEVEL9K_SHORTEN_STRATEGY=""
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+export PATH=/Users/kfan/git/build-tools/bin:$PATH
+export GRADLE_HOME=/Users/kfan/git/build-tools/gradle/current
+export PATH=/Users/kfan/git/build-tools/bin:$PATH
+export GRADLE_HOME=/Users/kfan/git/build-tools/gradle/current
