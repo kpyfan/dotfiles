@@ -155,6 +155,9 @@ prompt_zsh_spotify () {
   fi
 }
 
+eval `ssh-agent` > /dev/null
+ssh-add /Users/kfan/.ssh/id_rsa > /dev/null
+
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('dir' 'vcs')
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('time' 'zsh_spotify')
 POWERLEVEL9K_RVM_BACKGROUND="red"

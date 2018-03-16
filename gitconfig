@@ -2,8 +2,8 @@
 	name = Kevin Fan
 	email = kfan@apptio.com
 [core]
-  excludesfile = ~/.gitignore_global
 	editor = vim
+	excludesfile = /Users/kfan/.gitignore_global
 [alias]
 	co = checkout
 	s = status
