@@ -176,4 +176,6 @@ export PATH=/Users/kfan/git/build-tools/bin:$PATH
 export GRADLE_HOME=/Users/kfan/git/build-tools/gradle/current
 export PATH=/Users/kfan/git/build-tools/bin:$PATH
 export GRADLE_HOME=/Users/kfan/git/build-tools/gradle/current
+export PYTHONPATH=/Users/kfan/git/frontdoor-py:$PYTHONPATH
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
