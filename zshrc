@@ -112,6 +112,7 @@ function extract()
 # The Fuck
 eval "$(thefuck --alias fuck)"
 
+# Aliases
 alias cleardb='echo '"'"'drop schema if exists frontdoor; create schema frontdoor; drop schema if exists frontdoor_audit; create schema frontdoor_audit;'"'"' | mysqldb'
 alias ls='ls -G'
 alias ll='ls -laG'
@@ -142,6 +143,20 @@ alias gcob='git checkout -b'
 alias mysqldb='/Applications/MySQLWorkbench.app/Contents/MacOS/mysql -h localhost -u root'
 alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
 alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
+
+# Custom bash functions
+venv() {
+  if [ ! -f "/Users/kfan/$1/bin/activate" ]; then
+    cd "/Users/kfan"
+    virtualenv "$1"
+    cd -
+  fi
+  source "/Users/kfan/$1/bin/activate"
+}
+
+pipr() {
+  pip install "$1" --upgrade --force-reinstall --no-deps
+}
 
 DEFAULT_USER="kfan"
 
