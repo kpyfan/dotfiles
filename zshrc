@@ -140,19 +140,47 @@ alias grefs=$'git for-each-ref --format=\'%(color:cyan)%(authordate:format:%m/%d
 alias grfd='git rebase frontdoor'
 alias gcob='git checkout -b'
 
+# Move a single commit with a branch to a diverged branch
+gmove() {
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: gmove <move_branch> <target_branch>"
+    return 1
+  fi
+
+  git checkout "$1"
+  gcob tempgmove
+  git branch -d "$1"
+  git checkout "$2"
+  gcob "$1"
+  git cherry-pick tempgmove
+  if [ "$?" -eq 0 ]; then
+    git branch -D tempgmove
+  fi
+}
+
 alias mysqldb='/Applications/MySQLWorkbench.app/Contents/MacOS/mysql -h localhost -u root'
 alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
 alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
 
 # Custom bash functions
 venv() {
-  if [ ! -f "/Users/kfan/$1/bin/activate" ]; then
-    cd "/Users/kfan"
+  if [ ! -f "/Users/kfan/pipenvs/$1/bin/activate" ]; then
+    cd "/Users/kfan/pipenvs"
     virtualenv "$1"
     cd -
   fi
-  source "/Users/kfan/$1/bin/activate"
+  source "/Users/kfan/pipenvs/$1/bin/activate"
 }
+
+rmenv() {
+  if [ -f "/Users/kfan/pipenvs/$1/bin/activate" ]; then
+    cd "/Users/kfan/pipenvs"
+    rm -rf "$1"
+    cd -
+  fi
+}
+
+alias venvs='ls -d /Users/kfan/pipenvs/* | xargs -n 1 basename'
 
 pipr() {
   pip install "$1" --upgrade --force-reinstall --no-deps
